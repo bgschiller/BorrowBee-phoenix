@@ -1,0 +1,40 @@
+<h2>Show user</h2>
+
+
+<ul>
+
+  <li>
+    <strong>Email:</strong>
+    <%= @user.email %>
+  </li>
+
+  <li>
+    <strong>Name:</strong>
+    <%= @user.name %>
+  </li>
+
+  <li>
+    <strong>Photo url:</strong>
+    <%= @user.photo_url %>
+  </li>
+
+  <li>
+    <strong>Location:</strong>
+    <%= @user.location %>
+  </li>
+
+  <li>
+    <strong>Is admin:</strong>
+    <%= @user.is_admin %>
+  </li>
+  <%= if @user.photo_url do %>
+    <img src="<%= @user.photo_url %>">
+  <% else %>
+    <img src="<%= gravatar_url @user.email %>"
+  <% end %>
+
+
+</ul>
+
+<%= link "Edit", to: user_path(@conn, :edit, @user) %>
+<%= link "Back", to: user_path(@conn, :index) %>
