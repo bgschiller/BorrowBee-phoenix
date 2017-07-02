@@ -1,6 +1,7 @@
 defmodule BorrowBee.User do
   use BorrowBee.Web, :model
 
+  alias BorrowBee.LoginToken
   require Logger
 
   schema "users" do

@@ -6,7 +6,6 @@ defmodule BorrowBee.SessionController do
   alias BorrowBee.LoginToken
 
   import Ecto.Query
-  import Ecto
 
   def new(conn, _params) do
     changeset = User.changeset(%User{})

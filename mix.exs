@@ -19,7 +19,7 @@ defmodule BorrowBee.Mixfile do
   def application do
     [mod: {BorrowBee, []},
      applications: [:phoenix, :phoenix_pubsub, :phoenix_html, :cowboy, :logger, :gettext,
-                    :phoenix_ecto, :postgrex]]
+                    :phoenix_ecto, :postgrex, :ex_machina]]
   end
 
   # Specifies which paths to compile per environment.
@@ -39,6 +39,7 @@ defmodule BorrowBee.Mixfile do
      {:gettext, "~> 0.11"},
      {:cowboy, "~> 1.0"},
      {:mailgun, "~> 0.1.2"},
+     {:ex_machina, "~> 1.0"},
      {:poison, "~> 2.1", override: true}]
   end
 

@@ -18,7 +18,7 @@ defmodule BorrowBee.Auth do
   end
 
   def login_user(conn, user) do
-    conn |> put_session(:current_user, user) |> configure_session(renew: true)
+    conn |> put_session(:current_user, user)
   end
 
   def current_user(conn) do

@@ -1,5 +1,5 @@
 defmodule BorrowBee.Mailer do
-  alias BorrowBee.{Endpoint, Router, User}
+  alias BorrowBee.{Endpoint, Router}
   use Mailgun.Client,
       domain: Application.get_env(:borrow_bee, :mailgun_domain),
       key: Application.get_env(:borrow_bee, :mailgun_key)
