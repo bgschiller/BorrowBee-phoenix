@@ -2,8 +2,8 @@ defmodule BorrowBee.SessionController do
   use BorrowBee.Web, :controller
 
   alias BorrowBee.User
-  alias BorrowBee.Mailer
   alias BorrowBee.LoginToken
+  alias BorrowBee.UserAuth
 
   import Ecto.Query
 
@@ -13,33 +13,14 @@ defmodule BorrowBee.SessionController do
   end
 
   def create(conn, %{"user" => user_params}) do
-    user_email = String.downcase(user_params["email"])
-    user_struct =
-      case Repo.get_by(User, email: user_email) do
-        nil -> %User{email: user_email}
-        user -> user
-      end
-      |> User.changeset(user_params)
-
-    case Repo.insert_or_update(user_struct) do
-      {:ok, user} ->
-        Task.async(fn -> create_token_and_send_email(user) end)
+    case UserAuth.send_login_token(user_params) do
+      {:ok, _user, _token} ->
         conn
         |> put_flash(:info, "We sent you a link to log in. Please check your inbox.")
         |> redirect(to: page_path(conn, :index))
-      {:error, changeset} ->
-        render(conn, "new.html", changeset: changeset)
+      {:error, message, changeset} ->
+        render(conn, "new.html", error: message, changeset: changeset)
     end
-  end
-
-  defp generate_token do
-    :crypto.strong_rand_bytes(20) |> Base.url_encode64 |> binary_part(0, 20)
-  end
-
-  defp create_token_and_send_email(user) do
-    token = generate_token()
-    Repo.insert!(%LoginToken{user_id: user.id, token: token})
-    Mailer.send_login_token(user, token)
   end
 
   def show(conn, %{"user_id" => user_id, "id" => token}) do
