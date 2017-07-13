@@ -18,8 +18,6 @@ config :borrow_bee, BorrowBee.Repo,
   hostname: "localhost",
   pool: Ecto.Adapters.SQL.Sandbox
 
-config :borrow_bee, mailer: BorrowBee.Mailer.Mock
-
 config :borrow_bee, [
   mailgun_domain: "notusedintests",
   mailgun_key: "notusedintests"
