@@ -2,7 +2,7 @@ defmodule BorrowBee.ItemControllerTest do
   use BorrowBee.ConnCase
 
   alias BorrowBee.Item
-  @valid_attrs %{desc: "some content", isbn: "some content", name: "some content", notes_from_owner: "some content", photo_url: "some content"}
+  @valid_attrs %{description: "some content", isbn: "some content", name: "some content", notes_from_owner: "some content", photo_url: "some content"}
   @invalid_attrs %{}
 
   test "lists all entries on index", %{conn: conn} do

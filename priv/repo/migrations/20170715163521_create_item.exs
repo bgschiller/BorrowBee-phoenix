@@ -4,19 +4,18 @@ defmodule BorrowBee.Repo.Migrations.CreateItem do
   def change do
     create table(:items) do
       add :name, :string
-      add :desc, :text
+      add :description, :text
       add :notes_from_owner, :text
       add :photo_url, :string
       add :isbn, :string
-      add :user, references(:users, on_delete: :nothing)
+      add :user_id, references(:users, on_delete: :nothing)
 
       timestamps()
     end
-    create index(:items, [:user])
+    create index(:items, [:user_id])
     create index(:items, [:inserted_at])
     create index(:items,
-      ["to_tsvector('english', name) || to_tsvector('english', desc)"],
+      ["to_tsvector('english', name || ' ' || description)"],
       name: :items_name_desc_vector, using: "GIN")
-
   end
 end

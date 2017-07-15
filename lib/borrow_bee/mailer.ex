@@ -10,7 +10,7 @@ defmodule BorrowBee.Mailer do
 
   def send_login_token(user, token) do
     Logger.info "Emailing login token to #{user.email}"
-    {:ok, _} = send_email(
+    send_email(
       to: user.email,
       from: "noreply@borrowbee.org",
       subject: "Log In to BorrowBee",

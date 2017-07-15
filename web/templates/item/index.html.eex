@@ -5,7 +5,7 @@
     <tr>
       <th>User</th>
       <th>Name</th>
-      <th>Desc</th>
+      <th>Description</th>
       <th>Notes from owner</th>
       <th>Photo url</th>
       <th>Isbn</th>
@@ -18,7 +18,7 @@
     <tr>
       <td><%= item.user %></td>
       <td><%= item.name %></td>
-      <td><%= item.desc %></td>
+      <td><%= item.description %></td>
       <td><%= item.notes_from_owner %></td>
       <td><%= item.photo_url %></td>
       <td><%= item.isbn %></td>

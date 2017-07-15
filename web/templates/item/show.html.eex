@@ -3,18 +3,13 @@
 <ul>
 
   <li>
-    <strong>User:</strong>
-    <%= @item.user %>
-  </li>
-
-  <li>
     <strong>Name:</strong>
     <%= @item.name %>
   </li>
 
   <li>
-    <strong>Desc:</strong>
-    <%= @item.desc %>
+    <strong>Description:</strong>
+    <%= @item.description %>
   </li>
 
   <li>
