@@ -1,0 +1,38 @@
+<h2>Show item</h2>
+
+<ul>
+
+  <li>
+    <strong>User:</strong>
+    <%= @item.user %>
+  </li>
+
+  <li>
+    <strong>Name:</strong>
+    <%= @item.name %>
+  </li>
+
+  <li>
+    <strong>Desc:</strong>
+    <%= @item.desc %>
+  </li>
+
+  <li>
+    <strong>Notes from owner:</strong>
+    <%= @item.notes_from_owner %>
+  </li>
+
+  <li>
+    <strong>Photo url:</strong>
+    <%= @item.photo_url %>
+  </li>
+
+  <li>
+    <strong>Isbn:</strong>
+    <%= @item.isbn %>
+  </li>
+
+</ul>
+
+<%= link "Edit", to: item_path(@conn, :edit, @item) %>
+<%= link "Back", to: item_path(@conn, :index) %>
