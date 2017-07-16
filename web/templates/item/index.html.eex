@@ -16,7 +16,7 @@
   <tbody>
 <%= for item <- @items do %>
     <tr>
-      <td><%= item.user %></td>
+      <td><%= item.user && (item.user.name || item.user.email) %></td>
       <td><%= item.name %></td>
       <td><%= item.description %></td>
       <td><%= item.notes_from_owner %></td>

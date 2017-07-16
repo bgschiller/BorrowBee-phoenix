@@ -4,9 +4,9 @@ defmodule BorrowBee.Item do
   schema "items" do
     field :name, :string
     field :description, :string
-    field :notes_from_owner, :string
-    field :photo_url, :string
-    field :isbn, :string
+    field :notes_from_owner, :string, null: true
+    field :photo_url, :string, null: true
+    field :isbn, :string, null: true
     belongs_to :user, BorrowBee.User
 
     timestamps()
@@ -18,6 +18,6 @@ defmodule BorrowBee.Item do
   def changeset(struct, params \\ %{}) do
     struct
     |> cast(params, [:name, :description, :notes_from_owner, :photo_url, :isbn])
-    |> validate_required([:name, :description, :notes_from_owner, :photo_url, :isbn])
+    |> validate_required([:name, :description, :notes_from_owner])
   end
 end

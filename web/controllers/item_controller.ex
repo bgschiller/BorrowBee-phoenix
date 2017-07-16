@@ -3,8 +3,14 @@ defmodule BorrowBee.ItemController do
 
   alias BorrowBee.Item
 
+  import Ecto.Changeset, only: [put_assoc: 3]
+
+  plug :scrub_params, "item" when action in [:create, :update]
+  plug :must_be_logged_in when action in [:new, :create]
+  plug :assign_item_and_authorize_user when action in [:update, :edit, :delete]
+
   def index(conn, _params) do
-    items = Repo.all(Item)
+    items = Repo.all(Item) |> Repo.preload(:user)
     render(conn, "index.html", items: items)
   end
 
@@ -15,7 +21,7 @@ defmodule BorrowBee.ItemController do
 
   def create(conn, %{"item" => item_params}) do
     changeset = Item.changeset(%Item{}, item_params)
-
+      |> put_assoc(:user, get_session(conn, :current_user))
     case Repo.insert(changeset) do
       {:ok, _item} ->
         conn
@@ -62,4 +68,52 @@ defmodule BorrowBee.ItemController do
     |> put_flash(:info, "Item deleted successfully.")
     |> redirect(to: item_path(conn, :index))
   end
+
+  defp must_be_logged_in(conn, _opts) do
+    if get_session(conn, :current_user) do
+      conn
+    else
+      conn
+      |> put_flash(:error, "You must be logged in to create an item!")
+      |> redirect(to: session_path(conn, :new))
+      |> halt()
+    end
+  end
+
+
+  defp item_not_found(conn) do
+    conn
+    |> put_flash(:error, "Item not found!")
+    |> redirect(to: page_path(conn, :index))
+    |> halt
+  end
+
+  defp assign_item(conn) do
+    case conn.params do
+      %{"id" => item_id} ->
+        case Repo.get(Item, item_id) do
+          nil -> item_not_found(conn)
+          item -> assign(conn, :item, item)
+        end
+      _ -> item_not_found(conn)
+    end
+  end
+
+  defp is_authorized_user?(conn) do
+    user = get_session(conn, :current_user)
+    (user && (user.id == conn.assigns[:item].user_id || BorrowBee.Auth.is_admin?(user)))
+  end
+
+  defp assign_item_and_authorize_user(conn, _opts) do
+    conn = assign_item(conn)
+    if is_authorized_user?(conn) do
+      conn
+    else
+      conn
+      |> put_flash(:error, "You are not authorized to modify that item!")
+      |> redirect(to: page_path(conn, :index))
+      |> halt()
+    end
+  end
+
 end
