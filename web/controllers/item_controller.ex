@@ -111,7 +111,7 @@ defmodule BorrowBee.ItemController do
     else
       conn
       |> put_flash(:error, "You are not authorized to modify that item!")
-      |> redirect(to: page_path(conn, :index))
+      |> redirect(to: item_path(conn, :index))
       |> halt()
     end
   end
