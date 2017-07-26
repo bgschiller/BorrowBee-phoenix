@@ -1,0 +1,15 @@
+<div class="card" style="width: 20rem;">
+  <%= if @item.photo_url do %>
+    <img class="card-img-top" src="<%= @item.photo_url %>" alt="photo of <%= @item.name %>">
+  <% end %>
+  <div class="card-block">
+    <h4 class="card-title"><%= @item.name %></h4>
+    <%= if @extended do %>
+      <p class="card-text"><%= @item.description %><p>
+      <p class="card-text"><%= @item.notes_from_owner %></p>
+    <% else %>
+      <p class="card-text"><%= truncate(@item.description) %><p>
+      <%= link "Learn more", to: item_path(@conn, :show, @item) %>
+    <% end %>
+  </div>
+</div>

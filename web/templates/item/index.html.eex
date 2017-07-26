@@ -1,36 +1,10 @@
 <h2>Listing items</h2>
 
-<table class="table">
-  <thead>
-    <tr>
-      <th>User</th>
-      <th>Name</th>
-      <th>Description</th>
-      <th>Notes from owner</th>
-      <th>Photo url</th>
-      <th>Isbn</th>
-
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
+<ul>
 <%= for item <- @items do %>
-    <tr>
-      <td><%= item.user && (item.user.name || item.user.email) %></td>
-      <td><%= item.name %></td>
-      <td><%= item.description %></td>
-      <td><%= item.notes_from_owner %></td>
-      <td><%= item.photo_url %></td>
-      <td><%= item.isbn %></td>
-
-      <td class="text-right">
-        <%= link "Show", to: item_path(@conn, :show, item), class: "btn btn-default btn-xs" %>
-        <%= link "Edit", to: item_path(@conn, :edit, item), class: "btn btn-default btn-xs" %>
-        <%= link "Delete", to: item_path(@conn, :delete, item), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %>
-      </td>
-    </tr>
+  <li>
+    <%= render "card.html", conn: @conn, item: item, extended: false %>
+  </li>
 <% end %>
-  </tbody>
-</table>
-
+</ul>
 <%= link "New item", to: item_path(@conn, :new) %>

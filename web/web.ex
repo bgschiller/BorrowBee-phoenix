@@ -52,6 +52,7 @@ defmodule BorrowBee.Web do
       import BorrowBee.Router.Helpers
       import BorrowBee.ErrorHelpers
       import BorrowBee.Gettext
+      import BorrowBee.ViewHelpers
     end
   end
 
