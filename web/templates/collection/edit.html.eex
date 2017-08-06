@@ -1,0 +1,6 @@
+<h2>Edit collection</h2>
+
+<%= render "form.html", changeset: @changeset,
+                        action: collection_path(@conn, :update, @collection) %>
+
+<%= link "Back", to: collection_path(@conn, :index) %>

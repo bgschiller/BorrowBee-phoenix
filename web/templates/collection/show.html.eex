@@ -1,0 +1,23 @@
+<h2>Show collection</h2>
+
+<ul>
+
+  <li>
+    <strong>Name:</strong>
+    <%= @collection.name %>
+  </li>
+
+  <li>
+    <strong>Description:</strong>
+    <%= @collection.description %>
+  </li>
+
+  <li>
+    <strong>User:</strong>
+    <%= @collection.user_id %>
+  </li>
+
+</ul>
+
+<%= link "Edit", to: collection_path(@conn, :edit, @collection) %>
+<%= link "Back", to: collection_path(@conn, :index) %>

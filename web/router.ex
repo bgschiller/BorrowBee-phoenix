@@ -24,6 +24,7 @@ defmodule BorrowBee.Router do
     resources "/sessions", SessionController, only: [:delete], singleton: true
 
     resources "/items", ItemController
+    resources "/collections", CollectionController
   end
 
   # Other scopes may use custom stacks.

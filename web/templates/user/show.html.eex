@@ -42,7 +42,7 @@
 <div class="collections">
   <h3>Collections</h3>
   <%= for collection <- @collections do %>
-    <h5> <%= collection.name %></h5>
+    <h5> <%= link collection.name, to: collection_path(@conn, :show, collection.id) %></h5>
     <ul>
       <%= for item <- collection.items do %>
         <%= render BorrowBee.ItemView, "card.html", conn: @conn, item: item, extended: false %>

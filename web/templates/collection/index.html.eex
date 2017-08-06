@@ -1,0 +1,30 @@
+<h2>Listing collections</h2>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+      <th>User</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+<%= for collection <- @collections do %>
+    <tr>
+      <td><%= collection.name %></td>
+      <td><%= collection.description %></td>
+      <td><%= collection.user_id %></td>
+
+      <td class="text-right">
+        <%= link "Show", to: collection_path(@conn, :show, collection), class: "btn btn-default btn-xs" %>
+        <%= link "Edit", to: collection_path(@conn, :edit, collection), class: "btn btn-default btn-xs" %>
+        <%= link "Delete", to: collection_path(@conn, :delete, collection), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %>
+      </td>
+    </tr>
+<% end %>
+  </tbody>
+</table>
+
+<%= link "New collection", to: collection_path(@conn, :new) %>
