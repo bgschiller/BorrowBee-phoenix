@@ -29,8 +29,7 @@ defmodule BorrowBee.UserController do
   end
 
   def show(conn, %{"id" => id}) do
-    user = Repo.get!(User, id)
-    render(conn, "show.html", user: user)
+    render(conn, "show.html", BorrowBee.UserData.show_user(id))
   end
 
   def edit(conn, %{"id" => id}) do

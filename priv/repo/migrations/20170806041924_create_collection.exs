@@ -9,8 +9,14 @@ defmodule BorrowBee.Repo.Migrations.CreateCollection do
 
       timestamps()
     end
-
     create index(:collections, [:user_id])
 
+
+    create table(:item_memberships) do
+      add :collection_id, references(:collections)
+      add :item_id, references(:items)
+    end
+    create index(:item_memberships, [:collection_id])
+    create index(:item_memberships, [:item_id])
   end
 end

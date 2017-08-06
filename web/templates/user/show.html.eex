@@ -38,3 +38,20 @@
 
 <%= link "Edit", to: user_path(@conn, :edit, @user) %>
 <%= link "Back", to: user_path(@conn, :index) %>
+
+<div class="collections">
+  <h3>Collections</h3>
+  <%= for collection <- @collections do %>
+    <h5> <%= collection.name %></h5>
+    <ul>
+      <%= for item <- collection.items do %>
+        <%= render BorrowBee.ItemView, "card.html", conn: @conn, item: item, extended: false %>
+      <% end %>
+    </ul>
+  <% end %>
+</div>
+
+<div class="items">
+  <h3>All Items</h3>
+  <%= render BorrowBee.ItemView, "list.html", conn: @conn, items: @items %>
+</div>

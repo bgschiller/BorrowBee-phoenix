@@ -8,6 +8,7 @@ defmodule BorrowBee.Item do
     field :photo_url, :string, null: true
     field :isbn, :string, null: true
     belongs_to :user, BorrowBee.User
+    many_to_many :collections, BorrowBee.Collection, join_through: "item_memberships"
 
     timestamps()
   end

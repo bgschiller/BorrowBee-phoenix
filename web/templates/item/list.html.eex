@@ -1,0 +1,5 @@
+<ul>
+  <%= for item <- @items do %>
+    <%= render BorrowBee.ItemView, "card.html", conn: @conn, item: item, extended: false %>
+  <% end %>
+</ul>

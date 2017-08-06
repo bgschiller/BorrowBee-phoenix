@@ -1,10 +1,4 @@
 <h2>Listing items</h2>
 
-<ul>
-<%= for item <- @items do %>
-  <li>
-    <%= render "card.html", conn: @conn, item: item, extended: false %>
-  </li>
-<% end %>
-</ul>
+<%= render "list.html", conn: @conn, items: @items %>
 <%= link "New item", to: item_path(@conn, :new) %>
