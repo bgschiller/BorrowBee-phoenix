@@ -1,4 +1,1 @@
-<ul>
-  <li><%= link "Users", to: user_path(@conn, :index) %></li>
-  <li><%= link "Items", to: item_path(@conn, :index) %></li>
-</ul>
+

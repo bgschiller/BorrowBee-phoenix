@@ -1,1 +1,13 @@
 /* This file is for your main application css. */
+.logged-in-user {
+  float: right;
+}
+
+.logo {
+  font-size: 36px;
+  font-weight: bold;
+}
+
+nav {
+  border-bottom: 1px solid #e5e5e5;
+}

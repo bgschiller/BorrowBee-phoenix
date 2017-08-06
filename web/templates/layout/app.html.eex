@@ -14,25 +14,29 @@
   <body>
     <div class="container">
       <header class="header">
-        <nav role="navigation">
-          <ul class="nav nav-pills pull-right">
-            <li>
-              <%= if user = current_user(@conn) do %>
-                Logged in as
-                <strong><%= user.name || user.email %></strong>
-                <br>
-                <%= link "Log out", to: session_path(@conn, :delete), method: :delete %>
-              <% else %>
-                <%= link "Log in", to: session_path(@conn, :new) %>
-              <% end %>
-            </li>
-          </ul>
-        </nav>
-        <span class="logo"></span>
+        <span class="logo">BorrowBee</span>
+
+        <span class="logged-in-user">
+          <%= if user = current_user(@conn) do %>
+            Logged in as
+            <strong><%= user.name || user.email %></strong>
+            <br>
+            <%= link "Log out", to: session_path(@conn, :delete), method: :delete %>
+          <% else %>
+            <%= link "Log in", to: session_path(@conn, :new) %>
+          <% end %>
+        </span>
       </header>
 
       <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>
       <p class="alert alert-danger" role="alert"><%= get_flash(@conn, :error) %></p>
+
+      <nav>
+        <ul>
+          <li><%= link "Users", to: user_path(@conn, :index) %></li>
+          <li><%= link "Items", to: item_path(@conn, :index) %></li>
+        </ul>
+      </nav>
 
       <main role="main">
         <%= render @view_module, @view_template, assigns %>
