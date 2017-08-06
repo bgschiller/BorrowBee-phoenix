@@ -1,7 +1,7 @@
 defmodule BorrowBee.User do
   use BorrowBee.Web, :model
 
-  alias BorrowBee.{LoginToken, Item}
+  alias BorrowBee.{LoginToken, Item, Collection}
   require Logger
 
   schema "users" do
@@ -15,6 +15,7 @@ defmodule BorrowBee.User do
 
     has_many :login_token, LoginToken
     has_many :items, Item
+    has_many :collections, Collection
   end
 
   @doc """

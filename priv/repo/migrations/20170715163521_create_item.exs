@@ -8,7 +8,7 @@ defmodule BorrowBee.Repo.Migrations.CreateItem do
       add :notes_from_owner, :text
       add :photo_url, :string
       add :isbn, :string
-      add :user_id, references(:users, on_delete: :nothing)
+      add :user_id, references(:users, on_delete: :delete_all)
 
       timestamps()
     end
