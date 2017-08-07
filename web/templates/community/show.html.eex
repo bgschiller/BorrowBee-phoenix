@@ -1,0 +1,17 @@
+<h2>Show community</h2>
+
+<ul>
+
+  <li>
+    <strong>Name:</strong>
+    <%= @community.name %>
+  </li>
+
+  <li>
+    <strong>Location:</strong>
+    <%= @community.location %>
+  </li>
+
+</ul>
+
+<%= link "Back", to: community_path(@conn, :index) %>

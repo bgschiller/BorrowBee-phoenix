@@ -1,0 +1,5 @@
+<h2>Listing communities</h2>
+
+<%= render "list.html", conn: @conn, communities: @communities %>
+
+<%= link "New community", to: community_path(@conn, :new) %>

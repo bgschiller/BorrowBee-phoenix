@@ -1,0 +1,6 @@
+<h2>Edit community</h2>
+
+<%= render "form.html", changeset: @changeset,
+                        action: community_path(@conn, :update, @community) %>
+
+<%= link "Back", to: community_path(@conn, :index) %>

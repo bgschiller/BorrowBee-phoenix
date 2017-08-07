@@ -19,12 +19,14 @@ defmodule BorrowBee.Router do
     get "/", PageController, :index
     resources "/users", UserController do
       resources "/sessions", SessionController, only: [:show]
+      resources "/communities", CommunityMembershipController, only: [:index, :create, :delete]
     end
     resources "/sessions", SessionController, only: [:new, :create]
     resources "/sessions", SessionController, only: [:delete], singleton: true
 
     resources "/items", ItemController
-    resources "/collections", CollectionController
+    resources "/collections", CollectionController, exclude: [:edit, :update, :delete]
+    resources "/communities", CommunityController
   end
 
   # Other scopes may use custom stacks.

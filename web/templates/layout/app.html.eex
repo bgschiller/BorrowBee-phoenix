@@ -36,6 +36,7 @@
           <li><%= link "Users", to: user_path(@conn, :index) %></li>
           <li><%= link "Items", to: item_path(@conn, :index) %></li>
           <li><%= link "Collections", to: collection_path(@conn, :index) %></li>
+          <li><%= link "Communities", to: community_path(@conn, :index) %></li>
         </ul>
       </nav>
 

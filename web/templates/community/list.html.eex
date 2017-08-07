@@ -1,0 +1,20 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Location</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+
+<%= for community <- @communities do %>
+    <tr>
+      <td><%= community.name %></td>
+      <td><%= community.location %></td>
+
+    </tr>
+<% end %>
+  </tbody>
+</table>

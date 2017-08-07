@@ -27,12 +27,22 @@
     <strong>Is admin:</strong>
     <%= @user.is_admin %>
   </li>
+  <li>
+    <strong> Member of:</strong>
+    <%= if @communities do %>
+      <%= for community <- @communities do %>
+        <%= community.name %>,
+      <% end %>
+    <% else %>
+      <emph>(no communities yet)</emph>
+    <% end %>
+  </li>
+
   <%= if @user.photo_url do %>
     <img src="<%= @user.photo_url %>">
   <% else %>
     <img src="<%= gravatar_url @user.email %>"
   <% end %>
-
 
 </ul>
 

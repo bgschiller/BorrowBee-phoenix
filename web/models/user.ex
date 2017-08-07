@@ -10,6 +10,7 @@ defmodule BorrowBee.User do
     field :photo_url, :string
     field :location, :string
     field :is_admin, :boolean, default: false
+    field :community_ids, {:array, :id}
 
     timestamps()
 
