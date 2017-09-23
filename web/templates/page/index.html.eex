@@ -1,1 +1,19 @@
 
+<h1>Welcome to BorrowBee!</h1>
+
+<section>
+  <h2>Meet your neighbors by sharing</h2>
+  <ul>
+    <li>books</li>
+    <li>board games</li>
+    <li>outdoor equipment</li>
+    <li>tools</li>
+  </ul>
+</section>
+
+<section>
+  <h2>Communities near you</h2>
+  It looks like there aren't any BorrowBee communities near you.
+  <%= link "Start one for your neighborhood", to: community_path(@conn, :new) %>
+  <%= render BorrowBee.CommunityView, "search.html", conn: @conn %>
+</section>

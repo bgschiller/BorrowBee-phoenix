@@ -6,4 +6,8 @@ defmodule BorrowBee.ViewHelpers do
       true -> String.slice(s, 0..len) <> "…"
     end
   end
+
+  def current_user(conn) do
+    Plug.Conn.get_session(conn, :current_user)
+  end
 end

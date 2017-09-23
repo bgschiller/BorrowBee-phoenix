@@ -1,0 +1,4 @@
+<form action="<%= community_path(@conn, :index) %>" method="get">
+  <input type="search" name="q" placeholder="search by name or zip code"/>
+  <input type="submit" value="search" />
+</form>
