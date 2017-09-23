@@ -6,6 +6,8 @@ defmodule BorrowBee.Community do
     field :location, :string
 
     timestamps()
+
+    many_to_many :users, BorrowBee.User, join_through: "memberships"
   end
 
   @doc """

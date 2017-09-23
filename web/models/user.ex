@@ -1,7 +1,7 @@
 defmodule BorrowBee.User do
   use BorrowBee.Web, :model
 
-  alias BorrowBee.{LoginToken, Item, Collection}
+  alias BorrowBee.{LoginToken, Item, Collection, Community}
   require Logger
 
   schema "users" do
@@ -10,10 +10,10 @@ defmodule BorrowBee.User do
     field :photo_url, :string
     field :location, :string
     field :is_admin, :boolean, default: false
-    field :community_ids, {:array, :id}
 
     timestamps()
 
+    many_to_many :communities, Community, join_through: "memberships"
     has_many :login_token, LoginToken
     has_many :items, Item
     has_many :collections, Collection

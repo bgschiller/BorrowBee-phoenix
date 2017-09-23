@@ -1,14 +1,16 @@
-defmodule BorrowBee.CommunityMembershipController do
+defmodule BorrowBee.MembershipController do
   use BorrowBee.Web, :controller
 
   alias BorrowBee.{Community, User}
 
-  def index(conn, %{"user_id" => user_id}) do
-    user = Repo.get!(User, user_id)
+  def list_communities(conn, %{"user_id" => user_id}) do
+    user = Repo.one(from user in User,
+      where: user.id == ^user_id,
+      preload: [community_ids: :memberships])
     communities = user.community_ids && Repo.all(
       from c in Community,
       where: c.id in ^user.community_ids)
-    render(conn, "index.html", communities: communities)
+    render(conn, "index.html", user: user, communities: communities)
   end
 
   def create(conn, %{"community" => community_params}) do
